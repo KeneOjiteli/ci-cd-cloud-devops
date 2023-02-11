@@ -8,9 +8,8 @@ commands:
         type: string 
         default: ${CIRCLE_WORKFLOW_ID:0:7}
     steps:
-      - run: 
-        command: |
-          apk add --update aws-cli
+      # - run: 
+      #   command: apk add --update aws-cli
       - run:
           name: Echo workflow ID that is going be be destroyed
           when: on_fail
@@ -243,6 +242,9 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-build]
+      - run: 
+        command: | 
+          apk add --update aws-cli
       - run:
           name: Run migrations
           command: |
