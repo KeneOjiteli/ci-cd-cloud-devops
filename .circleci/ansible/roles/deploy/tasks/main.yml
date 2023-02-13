@@ -23,14 +23,6 @@
     update_cache: yes
    
   # pm = process manager 
-# - name: "Install pm2"
-#   become: true
-#   apt:
-#     name: pm2
-#     global: yes
-#     production: yes
-#     state: present
-    
 - name: "install pm2"
   become: true
   npm:
