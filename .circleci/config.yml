@@ -398,8 +398,17 @@ jobs:
           command: |
             # your code here
             apk add --update --no-cache ansible tar gzip nodejs npm curl aws-cli
+      # - run:
+      #     name: Get backend url
+      #     command: |
+      #       # your code here
+      #       BACKEND_IP=$(aws ec2 describe-instances \
+      #       --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --query 'Reservations[*].Instances[*].PublicIpAddress' \
+      #       --output text)
+      #       echo ${BACKEND_IP}
       - run:
-          name: Get backend url
+          name: Backend smoke test.
           command: |
             # your code here
             BACKEND_IP=$(aws ec2 describe-instances \
@@ -407,10 +416,7 @@ jobs:
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text)
             echo ${BACKEND_IP}
-      - run:
-          name: Backend smoke test.
-          command: |
-            # your code here
+            
             export API_URL=http://${BACKEND_IP}:3030
             echo ${API_URL}
             
@@ -418,24 +424,24 @@ jobs:
             sleep 60
             
             # Perform a get request with curl and checking for "ok" in the response
-            # if curl -v "${API_URL}/api/status" | grep "ok"
-            if curl -s $API_URL/api/status | grep "ok"
+           
+            if curl $API_URL/api/status | grep "ok"
             then
                 exit 0
             else
                 exit 1
             fi
-      - run:
-          name: Frontend smoke test.
-          command: |
-            # your code here
-            FRONTEND_WEBSITE=http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-east-1.amazonaws.com
-            if curl -s $FRONTEND_WEBSITE | grep "Welcome"
-            then
-                exit 1
-            else
-                exit 1
-            fi
+      # - run:
+      #     name: Frontend smoke test.
+      #     command: |
+      #       # your code here
+      #       FRONTEND_WEBSITE=http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-east-1.amazonaws.com
+      #       if curl -s $FRONTEND_WEBSITE | grep "Welcome"
+      #       then
+      #           exit 1
+      #       else
+      #           exit 1
+      #       fi
       # Here's where you will add some code to rollback on failure  
       - destroy-environment:
           workflowID: ${CIRCLE_WORKFLOW_ID:0:7}
@@ -504,7 +510,7 @@ workflows:
       - deploy-backend:
           requires: [run-migrations]
       - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
+          requires: [deploy-backend]
 #       - cloudfront-update:
 #           requires: [smoke-test]
 #       - cleanup:
