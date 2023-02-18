@@ -424,7 +424,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-              yum install tar gzip -y
+             yum install tar gzip -y
       - run:
           name: Old Stack Workflow ID
           command: |
@@ -458,7 +458,7 @@ cleanup:
       - run:
           name: Install dependencies
           command: |
-              yum install tar gzip -y
+            yum install tar gzip -y
       - attach_workspace:
           at: ~/
       - run:
@@ -483,8 +483,6 @@ cleanup:
             else
               echo "This is the latest Stack"
             fi
-            
-
 workflows:
   default:
     jobs:
