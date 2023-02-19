@@ -227,7 +227,7 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - "	5e:e0:b8:74:9f:7e:ce:c4:66:cc:63:9f:41:0f:36:05"
+            - "d6:05:96:d7:8b:fa:45:1c:7f:59:d7:42:63:4c:c5:e1"
       # attach workspace
       - attach_workspace:
           at: ~/
@@ -238,7 +238,9 @@ jobs:
       - run:
           name: Configure server
           command: |
+            pwd
             cd .circleci/ansible
+            ls -al
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
           no_output_timeout: 30m
@@ -335,7 +337,7 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - "5e:e0:b8:74:9f:7e:ce:c4:66:cc:63:9f:41:0f:36:05"
+            - "d6:05:96:d7:8b:fa:45:1c:7f:59:d7:42:63:4c:c5:e1"
       # attach workspace
       - attach_workspace:
           at: ~/
