@@ -245,10 +245,10 @@ jobs:
       - run:
           name: Configure server
           command: |
-          cd .circleci/ansible
-          cat inventory.txt
-          ansible-playbook -i inventory.txt configure-server.yml
-          no_output_timeout: 30m
+            cd .circleci/ansible
+            cat inventory.txt
+            ansible-playbook -i inventory.txt configure-server.yml
+            no_output_timeout: 30m
       # Here's where you will add some code to rollback on failure 
       - destroy-environment:
           workflowID: ${CIRCLE_WORKFLOW_ID:0:7}
