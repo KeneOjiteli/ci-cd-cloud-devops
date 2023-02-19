@@ -79,7 +79,7 @@ commands:
             fi
             
 jobs:
-  build-frontend12:
+  build-frontend:
     docker:
       - image: circleci/node:13.8.0
     steps:
