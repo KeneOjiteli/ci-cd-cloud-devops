@@ -234,7 +234,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update --no-cache ansible tar gzip
+            apk add --update ansible tar gzip
       - run:
           name: Configure server
           command: |
