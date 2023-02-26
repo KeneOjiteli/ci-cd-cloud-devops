@@ -220,7 +220,7 @@ jobs:
   configure-infrastructure:
     docker:
       # Docker image here that supports Ansible
-      - image: cimg/base:2023.02
+      - image: python:3.10-alpine3.16
     steps:
       # Checkout code from git
       - checkout
