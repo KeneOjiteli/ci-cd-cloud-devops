@@ -474,17 +474,28 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-            export OldWorkflowID=$(curl --insecure https://kvdb.io/EpqA8p4nnjyuV2DroJzcTJ/old_workflow_id)
-            echo Old Workflow ID: $OldWorkflowID
-
-            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
+            export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
+            if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
             then
-              aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
-              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
-              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
+              echo "Deleting old stack"
+              echo "s3://udapeople-${OldWorkflowID}"
+              aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive || true
+              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}" || true
+              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}" || true
             else
-              echo "This is the latest Stack"
+              echo "Stack is the latest"
             fi
+          # export OldWorkflowID=$(curl --insecure https://kvdb.io/EpqA8p4nnjyuV2DroJzcTJ/old_workflow_id)
+          # echo Old Workflow ID: $OldWorkflowID
+
+          # if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
+          # then
+          #   aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
+          #   aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
+          #   aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
+          # else
+          #   echo "This is the latest Stack"
+          # fi
 workflows:
   default:
     jobs:
