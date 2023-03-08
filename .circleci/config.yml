@@ -467,17 +467,10 @@ jobs:
           name: Get old stack workflow id
           command: |
             # your code here
-            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-              --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
+            export STACKS=($(aws cloudformation list-stacks \
+                --query "StackSummaries[*].StackName" \
+                --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo Stack names: "${STACKS[@]}"
-            cat ~/project/OldWorkflowID.txt
-            export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
-            echo OldWorkflowID: "${OldWorkflowID}"            
-            
-          # export STACKS=($(aws cloudformation list-stacks \
-          #     --query "StackSummaries[*].StackName" \
-          #     --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
-          # echo Stack names: "${STACKS[@]}"
       - run:
           name: Remove old stacks and files
           command: |
