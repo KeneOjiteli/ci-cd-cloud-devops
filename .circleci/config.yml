@@ -395,7 +395,22 @@ jobs:
           name: Backend smoke test.
           command: |
             # your code here
-            if [[ 'ok' =~ $(curl -s --connect-timeout 5 http://${BACKEND_IP}:3030/api/status | grep -o ok) ]];then return 0 else return 1;fi
+                  BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
+                    --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --query 'Reservations[*].Instances[*].PublicDnsName' \
+                    --output text)
+                  echo ${BACKEND_PUBLIC_IP}
+                  export API_URL=http://${BACKEND_PUBLIC_IP}:3030
+                  
+                  echo ${API_URL}
+                  echo "sleeping for 1 minute"
+                  sleep 60
+                  if curl -v "${API_URL}/api/status" | grep "ok"
+                  then
+                    exit 0
+                  else
+                    exit 1
+                  fi
 
       - run:
           name: Frontend smoke test.
