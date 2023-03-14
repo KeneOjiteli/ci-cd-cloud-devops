@@ -325,7 +325,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "dc:41:83:cb:1e:bc:0a:ee:14:8a:0f:01:a9:89:da:6b"
-      # attach workspace
+      # attach workspace here
       - attach_workspace:
           at: ~/
       - run:
@@ -413,7 +413,6 @@ jobs:
             else
               exit 1
             fi
-            
     - run:
           name: Frontend smoke test.
           command: |
