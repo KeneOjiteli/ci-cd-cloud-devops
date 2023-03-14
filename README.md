@@ -18,9 +18,9 @@ Your screenshots in JPG or PNG format, named using the screenshot number listed 
 - Job failed because of unit tests. [SCREENSHOT02]
 
 - Job that failed because of vulnerable packages. [SCREENSHOT03]
-- 
+
 - An alert from one of your failed builds. [SCREENSHOT04]
-- 
+
 - Appropriate job failure for infrastructure creation. [SCREENSHOT05]
 
 - Appropriate job failure for the smoke test job. [SCREENSHOT06]
@@ -31,7 +31,7 @@ Your screenshots in JPG or PNG format, named using the screenshot number listed 
 - Successful promotion job. [SCREENSHOT08]
 
 - Successful cleanup job. [SCREENSHOT09]
--
+
 - Only deploy on pushed to master branch. [SCREENSHOT10
 
 - Provide a screenshot of a graph of your EC2 instance including available memory, available disk space, and CPU usage. [SCREENSHOT11]
@@ -44,4 +44,4 @@ Your screenshots in JPG or PNG format, named using the screenshot number listed 
 
 - Provide a screenshot of your Prometheus server showing UP state [URL05_SCREENSHOT]
 
--Your presentation should be in PDF format named "presentation.pdf" and should be included in your code repository root folder.
+- Your presentation should be in PDF format named "presentation.pdf" and should be included in your code repository root folder.
