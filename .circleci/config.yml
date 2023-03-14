@@ -413,7 +413,7 @@ jobs:
             else
               exit 1
             fi
-    - run:
+      - run:
           name: Frontend smoke test.
           command: |
             # your code here
