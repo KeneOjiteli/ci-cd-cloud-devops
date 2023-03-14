@@ -1,0 +1,9 @@
+A. A public git repository with your project code [URL01] = https://github.com/KeneOjiteli/udacity-nanodegree-project-3.git
+
+B. Evidence of deployed and functioning front-end application in an S3 bucket [URL02] = http://udapeople-3a3ce31.s3-website-us-east-1.amazonaws.com
+
+Evidence of deployed and functioning front-end application in CloudFront [URL03] = https://d1mt7tau0arkkl.cloudfront.net/
+
+
+C. Prometheus server showing UP state = http://ec2-3-235-43-157.compute-1.amazonaws.com:9090/targets
+

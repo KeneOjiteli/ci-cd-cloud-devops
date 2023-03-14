@@ -1,0 +1,7 @@
+A public git repository with your project code [URL01] = https://github.com/KeneOjiteli/udacity-nanodegree-project-3.git
+
+Evidence of deployed and functioning front-end application in an S3 bucket [URL02] = http://udapeople-3c2e942.s3-website-us-east-1.amazonaws.com/
+
+Evidence of deployed and functioning front-end application in CloudFront [URL03] = https://d1djeevr233xnn.cloudfront.net
+
+udapeople-udapeople-3c2e942.s3.amazonaws.com
